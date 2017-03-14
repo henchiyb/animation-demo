@@ -2,7 +2,6 @@ package game;
 
 import controllers.CharacterController;
 import models.Character;
-import models.CharacterState;
 import utils.Utils;
 
 import java.awt.*;
@@ -47,33 +46,20 @@ public class GameWindow extends Frame implements Runnable {
             public void keyPressed(KeyEvent e) {
                 switch (e.getKeyCode()){
                     case KeyEvent.VK_UP:
-                        if (Character.getInstance().getCharacterState() != CharacterState.UP)
-                            Character.getInstance().setCharacterState(CharacterState.UP);
+                        //TODO
                         break;
                     case KeyEvent.VK_DOWN:
-                        Character.getInstance().setCharacterState(CharacterState.DOWN);
-                        break;
+
                     case KeyEvent.VK_LEFT:
-                        Character.getInstance().setCharacterState(CharacterState.LEFT);
-                        break;
+
                     case KeyEvent.VK_RIGHT:
-                        Character.getInstance().setCharacterState(CharacterState.RIGHT);
-                        break;
+
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
-//                switch (e.getKeyCode()){
-//                    case KeyEvent.VK_UP:
-//                    case KeyEvent.VK_DOWN:
-//                    case KeyEvent.VK_LEFT:
-//                    case KeyEvent.VK_RIGHT:
-//                        characterController.getCharacter().setCharacterState(CharacterState.STANDING);
-//                        break;
-                if (Character.getInstance().getCharacterState() != CharacterState.STANDING){
-                    Character.getInstance().setCharacterState(CharacterState.STANDING);
-                }
+                //TODO
             }
         });
         backBuffer = new BufferedImage(SCREEN_WIDTH, SCREEN_HEIGHT, BufferedImage.TYPE_INT_BGR);
