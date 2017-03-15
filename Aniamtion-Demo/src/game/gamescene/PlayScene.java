@@ -1,9 +1,9 @@
 package game.gamescene;
 
 import controllers.CharacterController;
-import game.EventType;
 import game.GameWindow;
-import game.Subcriber;
+import game.NotificationCenter;
+import game.SceneType;
 import models.Character;
 import models.CharacterState;
 import utils.Utils;
@@ -11,7 +11,6 @@ import utils.Utils;
 import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 /**
  * Created by Nhan on 3/15/2017.
@@ -23,6 +22,7 @@ public class PlayScene extends GameScene{
     public PlayScene() {
         clip = Utils.playSound("res/laser_shoot.wav", true);
         characterController = new CharacterController();
+        this.sceneType = SceneType.PLAY_SCENE;
     }
 
     @Override
@@ -55,10 +55,8 @@ public class PlayScene extends GameScene{
                 break;
             case KeyEvent.VK_RIGHT:
                         Character.getInstance().setCharacterState(CharacterState.RIGHT);
-//                        clip.start();
-//                        clip.loop(-1);
                 break;
-            case KeyEvent.VK_SPACE:
+            case KeyEvent.VK_BACK_SPACE:
                 clip.stop();
                 break;
         }
@@ -79,8 +77,4 @@ public class PlayScene extends GameScene{
         }
     }
 
-    @Override
-    public void onEvent(EventType eventType) {
-
-    }
 }

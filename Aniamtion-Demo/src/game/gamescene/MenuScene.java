@@ -1,13 +1,12 @@
 package game.gamescene;
 
-import game.EventType;
 import game.GameWindow;
 import game.NotificationCenter;
+import game.SceneType;
 import utils.Utils;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 /**
  * Created by Nhan on 3/15/2017.
@@ -15,7 +14,7 @@ import java.awt.event.KeyListener;
 public class MenuScene extends GameScene{
 
     public MenuScene() {
-        NotificationCenter.getInstance().register(this);
+        this.sceneType = SceneType.MENU_SCENE;
     }
 
     @Override
@@ -37,16 +36,12 @@ public class MenuScene extends GameScene{
             if (e.getKeyCode() == KeyEvent.VK_A){
                 //TODO: change to scene Play
                 System.out.println("change scene");
-                NotificationCenter.getInstance().onEvent(EventType.CHANGE_SCENE);
+                NotificationCenter.getInstance().onEvent(SceneType.PLAY_SCENE, true);
             }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
 
-    }
-
-    @Override
-    public void onEvent(EventType eventType) {
     }
 }

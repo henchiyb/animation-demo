@@ -40,7 +40,7 @@ public class Utils {
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
             clip = AudioSystem.getClip();
             clip.open(audioIn);
-            clip.start();
+//            clip.start();
 
             if(repeat) {
                 clip.loop(Clip.LOOP_CONTINUOUSLY);
