@@ -2,8 +2,11 @@ package game;
 
 import controllers.CharacterController;
 import models.Character;
+import models.CharacterState;
 import utils.Utils;
 
+import javax.rmi.CORBA.Util;
+import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -22,11 +25,13 @@ public class GameWindow extends Frame implements Runnable {
     private CharacterController characterController;
     private BufferedImage backBuffer;
     private Graphics graphics;
-
+    private Clip clip;
+    private Character character = new Character(SCREEN_WIDTH/ 2, SCREEN_HEIGHT /2);
     public GameWindow(){
         setVisible(true);
         setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
+        clip = Utils.playSound("res/laser_shoot.wav", true);
         characterController = new CharacterController();
 
         addWindowListener(new WindowAdapter() {
@@ -35,6 +40,8 @@ public class GameWindow extends Frame implements Runnable {
                 System.exit(0);
             }
         });
+
+
 
         addKeyListener(new KeyListener() {
             @Override
@@ -47,19 +54,39 @@ public class GameWindow extends Frame implements Runnable {
                 switch (e.getKeyCode()){
                     case KeyEvent.VK_UP:
                         //TODO
+                        character.setCharacterState(CharacterState.UP);
                         break;
                     case KeyEvent.VK_DOWN:
-
+                        character.setCharacterState(CharacterState.DOWN);
+                        break;
                     case KeyEvent.VK_LEFT:
-
+//                        Character.getInstance().setCharacterState(CharacterState.LEFT);
+                        break;
                     case KeyEvent.VK_RIGHT:
-
+//                        Character.getInstance().setCharacterState(CharacterState.RIGHT);
+//                        clip.start();
+//                        clip.loop(-1);
+                        break;
+                    case KeyEvent.VK_SPACE:
+                        clip.stop();
+                        break;
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 //TODO
+                switch (e.getKeyCode()){
+                    case KeyEvent.VK_UP:
+
+                    case KeyEvent.VK_DOWN:
+
+                    case KeyEvent.VK_LEFT:
+
+                    case KeyEvent.VK_RIGHT:
+                        characterController.getCharacter().setCharacterState(CharacterState.STANDING);
+                        break;
+                }
             }
         });
         backBuffer = new BufferedImage(SCREEN_WIDTH, SCREEN_HEIGHT, BufferedImage.TYPE_INT_BGR);

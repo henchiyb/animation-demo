@@ -14,6 +14,26 @@ public class Character {
     protected int width;
     protected int height;
 
+    private static Character instance = null;
+
+    public static Character getInstance() {
+        if (instance == null)
+            instance = new Character(GameWindow.SCREEN_WIDTH / 2, GameWindow.SCREEN_HEIGHT / 2);
+        return instance;
+//        return new Character(GameWindow.SCREEN_WIDTH / 2, GameWindow.SCREEN_HEIGHT / 2);
+    }
+
+//    public static Character instance = new Character(GameWindow.SCREEN_WIDTH / 2, GameWindow.SCREEN_HEIGHT / 2);
+
+    private CharacterState characterState = CharacterState.STANDING;
+
+    public CharacterState getCharacterState() {
+        return characterState;
+    }
+
+    public void setCharacterState(CharacterState characterState) {
+        this.characterState = characterState;
+    }
 
     public Character() {
     }
