@@ -1,6 +1,8 @@
 package game.gamescene;
 
+import game.EventType;
 import game.GameWindow;
+import game.NotificationCenter;
 import utils.Utils;
 
 import java.awt.*;
@@ -10,21 +12,19 @@ import java.awt.event.KeyListener;
 /**
  * Created by Nhan on 3/15/2017.
  */
-public class MenuScene implements GameScene, KeyListener {
+public class MenuScene extends GameScene{
 
-    private PlayScene playScene;
+    public MenuScene() {
+        NotificationCenter.getInstance().register(this);
+    }
+
     @Override
     public void run() {
-        if (playScene != null)
-            playScene.run();
     }
 
     @Override
     public void update(Graphics g) {
-        if (playScene == null)
             g.drawImage(Utils.loadImage("res/rpg_menu.jpg"), 0, 0, GameWindow.SCREEN_WIDTH, GameWindow.SCREEN_HEIGHT, null);
-        else
-            playScene.update(g);
     }
 
     @Override
@@ -34,19 +34,19 @@ public class MenuScene implements GameScene, KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (playScene == null)
             if (e.getKeyCode() == KeyEvent.VK_A){
                 //TODO: change to scene Play
                 System.out.println("change scene");
-                playScene = PlayScene.instance;
+                NotificationCenter.getInstance().onEvent(EventType.CHANGE_SCENE);
             }
-        else
-            playScene.keyPressed(e);
-
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    @Override
+    public void onEvent(EventType eventType) {
     }
 }

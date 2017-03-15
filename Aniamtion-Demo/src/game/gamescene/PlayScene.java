@@ -1,7 +1,9 @@
 package game.gamescene;
 
 import controllers.CharacterController;
+import game.EventType;
 import game.GameWindow;
+import game.Subcriber;
 import models.Character;
 import models.CharacterState;
 import utils.Utils;
@@ -14,11 +16,10 @@ import java.awt.event.KeyListener;
 /**
  * Created by Nhan on 3/15/2017.
  */
-public class PlayScene implements GameScene, KeyListener{
+public class PlayScene extends GameScene{
     private CharacterController characterController;
     private Clip clip;
 
-    public static PlayScene instance = new PlayScene();
     public PlayScene() {
         clip = Utils.playSound("res/laser_shoot.wav", true);
         characterController = new CharacterController();
@@ -76,5 +77,10 @@ public class PlayScene implements GameScene, KeyListener{
                 characterController.getCharacter().setCharacterState(CharacterState.STANDING);
                 break;
         }
+    }
+
+    @Override
+    public void onEvent(EventType eventType) {
+
     }
 }
