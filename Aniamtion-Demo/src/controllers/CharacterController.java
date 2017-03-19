@@ -15,7 +15,7 @@ import java.util.Vector;
  * Created by Nhan on 3/14/2017.
  */
 public class CharacterController {
-    private Character character;
+    private Character character = Character.getInstance();
     private View view;
 
     private Animation animationLeft = new Animation(

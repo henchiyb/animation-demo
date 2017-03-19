@@ -26,7 +26,7 @@ public class GameWindow extends Frame implements Runnable {
     private BufferedImage backBuffer;
     private Graphics graphics;
     private Clip clip;
-    private Character character = new Character(SCREEN_WIDTH/ 2, SCREEN_HEIGHT /2);
+    private Character character = Character.getInstance();
     public GameWindow(){
         setVisible(true);
         setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -60,10 +60,10 @@ public class GameWindow extends Frame implements Runnable {
                         character.setCharacterState(CharacterState.DOWN);
                         break;
                     case KeyEvent.VK_LEFT:
-//                        Character.getInstance().setCharacterState(CharacterState.LEFT);
+                        Character.getInstance().setCharacterState(CharacterState.LEFT);
                         break;
                     case KeyEvent.VK_RIGHT:
-//                        Character.getInstance().setCharacterState(CharacterState.RIGHT);
+                        Character.getInstance().setCharacterState(CharacterState.RIGHT);
 //                        clip.start();
 //                        clip.loop(-1);
                         break;
